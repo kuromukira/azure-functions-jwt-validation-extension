@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</RootNamespace>
-    <PackageId>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</PackageId>
+    <PackageId>Azure.Functions.JwtCustomHandler</PackageId>
     <Authors>Nor Gelera</Authors>
     <Company />
-    <Product>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</Product>
+    <Product>Azure.Functions.JwtCustomHandler</Product>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Nor Gelera 2020</Copyright>
     <PackageReleaseNotes>Implement custom token validation and Firebase Auth.</PackageReleaseNotes>
