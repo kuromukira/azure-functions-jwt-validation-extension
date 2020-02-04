@@ -20,7 +20,7 @@ namespace ExampleFunction
         public override void Configure(IFunctionsHostBuilder builder)
         {
             /// Custom Token Validator
-            builder.Services.AddSingleton<IAccessTokenProvider, AccessTokenProvider>(provider => new AccessTokenProvider(
+            builder.Services.AddSingleton<IClaimsTokenProvider, CustomTokenProvider>(provider => new CustomTokenProvider(
                 issuer: Environment.GetEnvironmentVariable("issuer"),
                 audience: Environment.GetEnvironmentVariable("audience"),
                 issuerSigningKey: Environment.GetEnvironmentVariable("issuerSigningKey")));
@@ -32,8 +32,8 @@ Inside your Function Class
 ```cs
 public class ExamplesFunction
 {
-    private readonly IAccessTokenProvider IAccessTokenProvider;
-    public ExamplesFunction(IAccessTokenProvider accessTokenProvider) => IAccessTokenProvider = accessTokenProvider;
+    private readonly IClaimsTokenProvider IClaimsTokenProvider;
+    public ExamplesFunction(IClaimsTokenProvider provider) => IClaimsTokenProvider = provider;
 
     [FunctionName("Example_Function")]
     public IActionResult HelloWorldFunction([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req)
@@ -45,7 +45,7 @@ public class ExamplesFunction
             else if (req.Body is null)
                 throw new NullReferenceException();
 
-            AccessTokenResult _tokenResult = IAccessTokenProvider.ValidateToken(req);
+            AccessTokenResult _tokenResult = IClaimsTokenProvider.ValidateToken(req);
             if (_tokenResult.Status != AccessTokenStatus.Valid)
                 return new UnauthorizedResult();
 
@@ -76,7 +76,7 @@ namespace ExampleFunction
         public override void Configure(IFunctionsHostBuilder builder)
         {
             /// Firebase Id Token Validator
-            builder.Services.AddSingleton<IAccessTokenProvider, AccessTokenProvider>(provider => new AccessTokenProvider(
+            builder.Services.AddSingleton<IFirebaseTokenProvider, CustomTokenProvider>(provider => new CustomTokenProvider(
                 issuer: "https://securetoken.google.com/<your-firebase-app-name>",
                 audience: "<your-firebase-app-name>"));
         }
@@ -87,8 +87,8 @@ Inside your Function Class
 ```cs
 public class ExamplesFunction
 {
-    private readonly IAccessTokenProvider IAccessTokenProvider;
-    public ExamplesFunction(IAccessTokenProvider accessTokenProvider) => IAccessTokenProvider = accessTokenProvider;
+    private readonly IFirebaseTokenProvider IFirebaseTokenProvider;
+    public ExamplesFunction(IFirebaseTokenProvider provider) => IFirebaseTokenProvider = provider;
 
     [FunctionName("Example_Function")]
     public async Task<IActionResult> HelloWorldFunction(
@@ -101,7 +101,7 @@ public class ExamplesFunction
             else if (req.Body is null)
                 throw new NullReferenceException();
 
-            AccessTokenResult _tokenResult = await IAccessTokenProvider.ValidateFirebaseToken(req);
+            AccessTokenResult _tokenResult = await IFirebaseTokenProvider.ValidateToken(req);
             if (_tokenResult.Status != AccessTokenStatus.Valid)
                 return new UnauthorizedResult();
 

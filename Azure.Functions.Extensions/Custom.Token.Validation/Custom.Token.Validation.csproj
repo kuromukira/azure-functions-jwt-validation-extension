@@ -9,10 +9,11 @@
     <Product>Az.Functions.JwtCustomHandler</Product>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Nor Gelera 2020</Copyright>
-    <PackageReleaseNotes>Implement custom token validation and Firebase Auth.</PackageReleaseNotes>
+    <PackageReleaseNotes>Separate custom token validator interface and Firebase Auth interface</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/kuromukira/azure-functions-jwt-validation-extension</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Description>A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

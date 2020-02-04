@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler
 {
     /// <summary>Validates an incoming request and extracts any <see cref="ClaimsPrincipal"/> contained within the bearer token.</summary>
-    public class AccessTokenProvider : IAccessTokenProvider
+    public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
     {
         private HttpClient HttpClient { get; set; } = new HttpClient();
         private readonly string _audience, _issuer, _issuerSigningKey, _authHeaderName, _bearerPrefix, _googleBaseUri, _googleTokenKeys;
 
-        public AccessTokenProvider(
+        public CustomTokenProvider(
             string audience,
             string issuer,
             string issuerSigningKey = null,
@@ -39,7 +39,7 @@ namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler
             HttpClient.BaseAddress = new Uri(_googleBaseUri);
         }
 
-        async Task<AccessTokenResult> IAccessTokenProvider.ValidateFirebaseToken(HttpRequest request)
+        async Task<AccessTokenResult> IFirebaseTokenProvider.ValidateToken(HttpRequest request)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler
             static SecurityKey CreateSecurityKeyFromPublicKey(string data) => new X509SecurityKey(new X509Certificate2(Encoding.UTF8.GetBytes(data)));
         }
 
-        AccessTokenResult IAccessTokenProvider.ValidateToken(HttpRequest request)
+        AccessTokenResult IClaimsTokenProvider.ValidateToken(HttpRequest request)
         {
             try
             {
