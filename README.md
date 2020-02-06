@@ -1,7 +1,7 @@
 # Custom Token Validation Provider for Azure Functions
 A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.
 
-## [NuGet](https://www.nuget.org/packages/Azure.Functions.JwtCustomHandler/)
+## [NuGet](https://www.nuget.org/packages/Az.Functions.JwtCustomHandler/)
 
 ## Custom Token Validator
 Add in your Function's `Startup.cs`
