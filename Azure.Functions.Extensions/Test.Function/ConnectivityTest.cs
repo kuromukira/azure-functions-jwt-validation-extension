@@ -23,8 +23,8 @@ namespace Test.Function
                     throw new NullReferenceException();
                 else
                 {
-                    AccessTokenResult _tokenResult = await TokenProvider.ValidateToken(req);
-                    if (_tokenResult.Status == AccessTokenStatus.Valid)
+                    AccessTokenResult tokenResult = await TokenProvider.ValidateToken(req);
+                    if (tokenResult.Status == AccessTokenStatus.Valid)
                         return new OkResult();
                     else return new UnauthorizedResult();
                 }
