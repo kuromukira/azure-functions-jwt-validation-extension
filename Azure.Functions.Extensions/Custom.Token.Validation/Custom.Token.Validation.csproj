@@ -7,23 +7,20 @@
     <Authors>Nor Gelera</Authors>
     <Company />
     <Product>Az.Functions.JwtCustomHandler</Product>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Nor Gelera 2020</Copyright>
-    <PackageReleaseNotes>Downgrade the following dependencies to fix issues with Functions SDK 3.0.4 up:
-- Microsoft.IdentityModel.Tokens to 5.3.0
-- System.IdentityModel.Tokens.Jwt to 5.3.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Update dependencies</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/kuromukira/azure-functions-jwt-validation-extension</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Description>A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.</Description>
     <Version>1.0.1</Version>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.3.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>
