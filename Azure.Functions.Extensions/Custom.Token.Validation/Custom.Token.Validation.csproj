@@ -1,19 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</RootNamespace>
     <PackageId>Az.Functions.JwtCustomHandler</PackageId>
     <Authors>Nor Gelera</Authors>
     <Company />
     <Product>Az.Functions.JwtCustomHandler</Product>
     <Copyright>Nor Gelera 2020</Copyright>
-    <PackageReleaseNotes>Update dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Update to .NET Standard 2.1</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/kuromukira/azure-functions-jwt-validation-extension</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Description>A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.</Description>
     <Version>1.0.1</Version>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
