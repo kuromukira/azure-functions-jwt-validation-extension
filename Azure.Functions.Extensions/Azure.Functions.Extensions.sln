@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Token.Validation", "Custom.Token.Validation\Custom.Token.Validation.csproj", "{4F6C4B2E-8B3D-41C6-BC09-7BF274DC3028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Function", "Test.Function\Test.Function.csproj", "{4E69BD25-228B-4FC5-8E76-5D365D364022}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,10 +1,17 @@
-﻿namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler
+﻿namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler;
+
+/// <summary></summary>
+public enum AccessTokenStatus
 {
-    public enum AccessTokenStatus
-    {
-        Valid,
-        Expired,
-        Error,
-        NoToken
-    }
+    /// <summary></summary>
+    Valid,
+
+    /// <summary></summary>
+    Expired,
+
+    /// <summary></summary>
+    Error,
+
+    /// <summary></summary>
+    NoToken
 }

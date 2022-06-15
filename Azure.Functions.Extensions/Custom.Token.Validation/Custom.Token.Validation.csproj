@@ -1,35 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</RootNamespace>
-    <PackageId>Az.Functions.JwtCustomHandler</PackageId>
-    <Authors>Nor Gelera</Authors>
-    <Company />
-    <Product>Az.Functions.JwtCustomHandler</Product>
-    <Copyright>Nor Gelera 2020</Copyright>
-    <PackageReleaseNotes>Update to .NET Standard 2.1</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/kuromukira/azure-functions-jwt-validation-extension</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Description>A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.</Description>
-    <Version>1.0.1</Version>
-    <PackageVersion>1.1.0</PackageVersion>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<RootNamespace>Microsoft.Azure.Functions.Extensions.JwtCustomHandler</RootNamespace>
+		<PackageId>Az.Functions.JwtCustomHandler</PackageId>
+		<Authors>Nor Gelera</Authors>
+		<Company />
+		<Product>Az.Functions.JwtCustomHandler</Product>
+		<Copyright>Nor Gelera 2020</Copyright>
+		<PackageReleaseNotes>Upgrade to .NET 6 and support for Azure Functions Isolated Mode</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/kuromukira/azure-functions-jwt-validation-extension</PackageProjectUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Description>A custom access token validation provider for Azure Functions via Dependency Injection. Inspired by https://github.com/BenMorris/FunctionsCustomSercuity with extra implementation for Firebase Auth.</Description>
+		<Version>2.0.0</Version>
+		<PackageVersion>2.0.0</PackageVersion>
+		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<FileVersion>2.0.0.0</FileVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.19.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.19.0" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.6.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Microsoft.Azure.Functions.Worker" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>
+			</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
