@@ -101,9 +101,10 @@ public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
             // Get the token from the header
             if (request != null &&
                 request.Headers.Any(h => h.Key == _authHeaderName) &&
-                request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).ToString().StartsWith(_bearerPrefix))
+                !string.IsNullOrWhiteSpace(request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).Value.FirstOrDefault(v => v.StartsWith(_bearerPrefix))))
             {
-                string token = request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).ToString()[_bearerPrefix.Length..];
+                string headerValue = request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).Value.FirstOrDefault(v => v.StartsWith(_bearerPrefix));
+                string token = headerValue[_bearerPrefix.Length..];
                 return await ValidateFirebaseToken(token);
             }
             else return AccessTokenResult.NoToken();
