@@ -17,8 +17,8 @@ namespace Microsoft.Azure.Functions.Extensions.JwtCustomHandler;
 /// <summary>Validates an incoming request and extracts any <see cref="ClaimsPrincipal"/> contained within the bearer token.</summary>
 public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
 {
-    private HttpClient HttpClient { get; set; } = new();
-    private readonly string _audience, _issuer, _issuerSigningKey, _authHeaderName, _bearerPrefix, _googleBaseUri, _googleTokenKeys;
+    private HttpClient HttpClient { get; } = new();
+    private readonly string _audience, _issuer, _issuerSigningKey, _authHeaderName, _bearerPrefix, _googleTokenKeys;
 
     /// <summary></summary>
     public CustomTokenProvider(
@@ -31,14 +31,14 @@ public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
         string googlePublicKeys = "x509/securetoken@system.gserviceaccount.com")
     {
         _googleTokenKeys = googlePublicKeys ?? "x509/securetoken@system.gserviceaccount.com";
-        _googleBaseUri = googleBaseUri ?? "https://www.googleapis.com/robot/v1/metadata/";
+        string googleBaseUri1 = googleBaseUri ?? "https://www.googleapis.com/robot/v1/metadata/";
         _issuerSigningKey = issuerSigningKey ?? string.Empty;
         _authHeaderName = authHeaderName ?? "Authorization";
         _bearerPrefix = bearerPrefix ?? "Bearer ";
         _audience = audience;
         _issuer = issuer;
 
-        HttpClient.BaseAddress = new Uri(_googleBaseUri);
+        HttpClient.BaseAddress = new Uri(googleBaseUri1);
     }
 
     async Task<AccessTokenResult> ValidateFirebaseToken(string token)
@@ -63,7 +63,7 @@ public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
 
             // Validate Firebase Id Token
             JwtSecurityTokenHandler handler = new();
-            ClaimsPrincipal result = handler.ValidateToken(token, tokenParams, out var securityToken);
+            ClaimsPrincipal result = handler.ValidateToken(token, tokenParams, out SecurityToken _);
             return AccessTokenResult.Success(result);
         }
         catch (SecurityTokenExpiredException)
@@ -104,7 +104,7 @@ public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
                 !string.IsNullOrWhiteSpace(request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).Value.FirstOrDefault(v => v.StartsWith(_bearerPrefix))))
             {
                 string headerValue = request.Headers.FirstOrDefault(h => h.Key == _authHeaderName).Value.FirstOrDefault(v => v.StartsWith(_bearerPrefix));
-                string token = headerValue[_bearerPrefix.Length..];
+                string token = headerValue?[_bearerPrefix.Length..];
                 return await ValidateFirebaseToken(token);
             }
             else return AccessTokenResult.NoToken();
@@ -132,7 +132,7 @@ public class CustomTokenProvider : IClaimsTokenProvider, IFirebaseTokenProvider
 
         // Validate the token
         JwtSecurityTokenHandler handler = new();
-        ClaimsPrincipal result = handler.ValidateToken(token, tokenParams, out var securityToken);
+        ClaimsPrincipal result = handler.ValidateToken(token, tokenParams, out SecurityToken _);
         return AccessTokenResult.Success(result);
     }
 
